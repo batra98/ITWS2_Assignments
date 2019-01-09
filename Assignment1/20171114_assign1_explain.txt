@@ -1,0 +1,51 @@
+q1) In Question 1, I have used  cat to display input1.txt, then i piped it to awk. If length of line is >= 35 i have piped it into sed where i replaced "in" with "in fact" i have used \b for excatly same match
+it can have 2 solutions 
+i. cat input1.txt | awk '{if(length($0)>=35){print $0}}' | sed 's/\bin\b/in fact/g'
+ii. cat input1.txt | awk '{if(length($0)>=35){print $0}}' | sed 's/\<in\>/in fact/g'
+
+i have used length which is a inbuilt function in awk.
+
+i am displaying all lines with character count >= 35 with the required replacements
+
+instead of doing "cat" one can also do "awk '{if(length($0)>=35){print $0}}' input1.txt"  
+
+
+
+
+q2) awk '{if($3=="apathy"){$3="g1a2u3r4a5v"};{print $0}}' input2.txt | grep -z "g1a2u3r4a5v" | sed 's/g1a2u3r4a5v/empathy/g'
+
+ In Question 2, I have used awk to replace 3rd "apathy" with "g1a2u3r4a5v". then i use grep to print all lines (the lines with "g1a2u3r4a5v" are highlighted).
+then i used sed to replace "g1a2u3r4a5v" with "empathy".
+
+
+q3) sed 's/./#/5g' input3.txt
+
+ i am using sed to replace characters with #, 5g is used to make changes from 5th character onwards.
+
+q4) cat input4.txt | awk -F ":" '{print "USER #"NR"="$1}'
+
+ i am using ":" as the delimiter and printing the output line by line.
+instead of doing "cat" i could have also used "awk -F ":" '{print "USER #"NR"="$1}' input4.txt".
+
+i had also written bash script which is as follows:-
+
+#!/bin/bash
+a=`cat input4.txt | awk -F ":" '{print $1}'`
+
+count=1
+
+for i in `echo $a`
+do
+	echo "USER #$count=$i"
+	((count++))
+done 
+
+as mentioned in question.
+
+q5) egrep 'TS([- ])..\1(.{1}([5]{3}|[S]{3})|.{2}([5]{2}|[S]{2}))\1[0O]' MostWanted.txt
+
+ input of program is taken from MostWanted.txt.
+ i am using regex to pull out the desired output.
+ \1 is used to have the same delimiter
+ 
+	
